@@ -16,5 +16,6 @@ public class NumberArray {
                 System.out.print(numbers[i] + " ");
             }
         }
+
     }
 }
