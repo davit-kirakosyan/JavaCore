@@ -1,6 +1,6 @@
 package homework.exercise.homework3;
 
-public class ArrayUtil2 {
+public class NumberArrayUtil {
 
     public static void main(String[] args) {
 
