@@ -41,24 +41,12 @@ public class CharArrayExample {
 //        char[] text = {' ',' ','b','a','r','e','v',' ',' '};
 //        պետք է տպել մասիվի այն սինվոլները որոնք պռաբել չեն.
         char[] text = {' ', ' ', 'b', 'a', 'r', 'e', 'v', ' ', ' '};
-        int beginIndex = 0;
-        int endIndex = text.length - 1;
-        while (beginIndex < endIndex && text[beginIndex] == ' ') {
-            beginIndex++;
-        }
-        while (beginIndex < endIndex && text[endIndex] == ' ') {
-            endIndex--;
-        }
-        char[] result = new char[(endIndex - beginIndex) + 1];
-        int index = 0;
-        for (int i = beginIndex; i <= endIndex; i++) {
-            result[index++] = text[i];
-        }
-        for (int i = 0; i < result.length; i++) {
-            System.out.print(result[i]);
-        }
 
-
+        for (int i = 0; i < text.length; i++) {
+            if (text[i] != ' ') {
+                System.out.print(text[i]);
+            }
+        }
 //                Առայժմ այսքանը։
 //        Հարցերի դեպքում գրեք չաթում, քննարկենք 🙂
 //        Ինչպես նաև չենք մոռանում այս մի շաբաթը օգտագործել ի օգուտ ձեզ, ու կրկնել 2-րդ գլխից սկսած բոլոր անցածը, անել գործնականները։
