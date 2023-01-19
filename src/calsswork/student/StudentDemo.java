@@ -23,6 +23,6 @@ public class StudentDemo {
 
         Student student = new Student(name, surname, age, phoneNumber, email, course);
 
-        System.out.println(student);
+        System.out.println(student.name);
     }
 }
