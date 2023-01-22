@@ -30,7 +30,7 @@ public class DynamicArrayDemo {
         dynamicArray.print();
 
         int byIndex = dynamicArray.getByIndex(5);
-        System.out.println("\n"+byIndex);
+        System.out.println("\n" + byIndex);
 
         byIndex = dynamicArray.getByIndex(31);
 

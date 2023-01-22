@@ -30,17 +30,16 @@ public class DynamicArray {
     //եթե տրված ինդեքսը մեր ունեցած մասիվի ինդեքսի սահմաններում է, վերադարձնել
     // մասիվի index-երրորդ էլեմենտը։ Հակառակ դեպքում վերադարձնել -1։
     public int getByIndex(int index) {
-            if (index <= size) {
-                return array[index];
-            }
+        if (index <= size) {
+            return array[index];
+        }
         return -1;
     }
 
     //տպել մասիվի ավելացված էլեմենտները
     public void print() {
         for (int i = 0; i < size; i++) {
-            System.out.println(array[i]);
+            System.out.print(array[i] + " ");
         }
     }
-
 }
