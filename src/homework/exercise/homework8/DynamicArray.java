@@ -72,15 +72,6 @@ public class DynamicArray {
 
     }
 
-    public boolean arrayContains(int index) {
-        for (int i = 0; i < size; i++) {
-            if (array[i] == index) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     //ավելացնել տրված value-ն տրված ինդեքսում, իսկ էղած էլեմենտները մի հատ աջ տանել։
     //Եթե չկա նման ինդեքս, տպել որ չկա
     public void add(int index, int value) {

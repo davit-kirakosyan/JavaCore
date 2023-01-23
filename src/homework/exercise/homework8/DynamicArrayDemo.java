@@ -26,26 +26,26 @@ public class DynamicArrayDemo {
         dynamicArray.add(18);
         dynamicArray.add(19);
         dynamicArray.add(20);
-//
-//        dynamicArray.print();
-//
-//        int byIndex = dynamicArray.getByIndex(5);
-//        System.out.print("\n" + byIndex);
-//
-//        byIndex = dynamicArray.getByIndex(31);
-//
-//        System.out.println(byIndex);
-//
-//        dynamicArray.deleteByIndex(5);
-//
-//        dynamicArray.deleteByIndex(17);
-//
-//        dynamicArray.print();
-//
-//        System.out.println();
-//        dynamicArray.set(2, 5);
-//        dynamicArray.set(5, 5);
-//        dynamicArray.set(21, 5);
+
+        dynamicArray.print();
+
+        int byIndex = dynamicArray.getByIndex(5);
+        System.out.print("\n" + byIndex);
+
+        byIndex = dynamicArray.getByIndex(31);
+
+        System.out.println(byIndex);
+
+        dynamicArray.deleteByIndex(5);
+
+        dynamicArray.deleteByIndex(17);
+
+        dynamicArray.print();
+
+        System.out.println();
+        dynamicArray.set(2, 5);
+        dynamicArray.set(5, 5);
+        dynamicArray.set(21, 5);
         dynamicArray.print();
 
         System.out.println();
@@ -54,11 +54,11 @@ public class DynamicArrayDemo {
         System.out.println();
         dynamicArray.print();
 
-//        System.out.println();
-//        boolean exists = dynamicArray.exists(18);
-//        System.out.println(exists);
-//
-//        int indexByValue = dynamicArray.getIndexByValue(5);
-//        System.out.println(indexByValue);
+        System.out.println();
+        boolean exists = dynamicArray.exists(18);
+        System.out.println(exists);
+
+        int indexByValue = dynamicArray.getIndexByValue(5);
+        System.out.println(indexByValue);
     }
 }
