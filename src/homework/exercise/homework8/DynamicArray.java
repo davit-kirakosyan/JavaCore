@@ -66,27 +66,22 @@ public class DynamicArray {
                 getByIndex(index);
             }
             array[index] = value;
-        } else {
-            System.out.println("նման ինդեքսով էլեմենտ չկա");
+        } else{
+            System.out.println("չկա նման ինդեքս: " + index);
         }
 
     }
-
     //ավելացնել տրված value-ն տրված ինդեքսում, իսկ էղած էլեմենտները մի հատ աջ տանել։
     //Եթե չկա նման ինդեքս, տպել որ չկա
     public void add(int index, int value) {
-        if (index >= size) {
-            System.out.println("չկա նման ինդեքս: " + index);
-        } else {
-            if (array.length == size) {
-                extend();
-            }
-            for (int i = size; i >= index; i--) {
-                array[i + 1] = array[i];
-            }
-            size++;
+        if (array.length == size) {
+            extend();
+        }
+        for (int i = size; i >= index; i--) {
+            array[i + 1] = array[i];
         }
         set(index, value);
+        size++;
     }
 
 
