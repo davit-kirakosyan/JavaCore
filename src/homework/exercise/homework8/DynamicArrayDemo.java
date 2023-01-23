@@ -36,9 +36,9 @@ public class DynamicArrayDemo {
 //
 //        System.out.println(byIndex);
 //
-        dynamicArray.deleteByIndex(5);
-
-        dynamicArray.deleteByIndex(17);
+//        dynamicArray.deleteByIndex(5);
+//
+//        dynamicArray.deleteByIndex(17);
 //
 //        dynamicArray.print();
 //

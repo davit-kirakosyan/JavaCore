@@ -84,7 +84,18 @@ public class DynamicArray {
     //ավելացնել տրված value-ն տրված ինդեքսում, իսկ էղած էլեմենտները մի հատ աջ տանել։
     //Եթե չկա նման ինդեքս, տպել որ չկա
     public void add(int index, int value) {
-       
+        if (index >= size) {
+            System.out.println("չկա նման ինդեքս: " + index);
+        } else {
+            if (array.length == size) {
+                extend();
+            }
+            for (int i = size; i >= index; i--) {
+                array[i + 1] = array[i];
+            }
+            size++;
+        }
+        set(index, value);
     }
 
 
