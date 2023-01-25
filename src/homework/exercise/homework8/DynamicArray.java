@@ -99,15 +99,10 @@ public class DynamicArray {
     //Վերադարձնել տրված value-ի ինդեքսը, եթե շատ կա տվյալ թվից, վերադարձնել առաջին ինդեքսը։
     //եթե չկա, -1
     public int getIndexByValue(int value) {
-        int index = 0;
         for (int i = 0; i < size; i++) {
             if (array[i] == value) {
-                index = i;
-                break;
+                return i;
             }
-        }
-        if (array[index] == value) {
-            return index;
         }
         return -1;
     }
