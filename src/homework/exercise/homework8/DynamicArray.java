@@ -41,6 +41,7 @@ public class DynamicArray {
         for (int i = 0; i < size; i++) {
             System.out.print(array[i] + " ");
         }
+        System.out.println();
     }
 
     //ջնջել մասիվի index-երորդ էլեմենտը
