@@ -20,7 +20,7 @@ public class Stack {
 
     int pop() {
         if (tos < 0) {
-            System.out.println("Stack-ը դադաչկ է");
+            System.out.println("Stack-ը դադարկ է");
             return 0;
         } else {
             return stack[tos--];
