@@ -21,19 +21,25 @@ public class BraceChecker {
                     break;
                 case ']':
                     last = (char) stack.pop();
-                    if (last != '[') {
+                    if (last == 0) {
+                        System.err.println("Error at " + i + " index Closed " + charAt + " but not open.");
+                    } else if (last != '[') {
                         System.err.println("Error: opened " + last + " but closed " + charAt + " at " + i);
                     }
                     break;
                 case '}':
                     last = (char) stack.pop();
-                    if (last != '{') {
+                    if (last == 0) {
+                        System.err.println("Error at " + i + " index Closed " + charAt + " but not open.");
+                    } else if (last != '{') {
                         System.err.println("Error: opened " + last + " but closed " + charAt + " at " + i);
                     }
                     break;
                 case ')':
                     last = (char) stack.pop();
-                    if (last != '(') {
+                    if (last == 0) {
+                        System.err.println("Error at " + i + " index Closed " + charAt + " but not open.");
+                    } else if (last != '(') {
                         System.err.println("Error: opened " + last + " but closed " + charAt + " at " + i);
                     }
                     break;
