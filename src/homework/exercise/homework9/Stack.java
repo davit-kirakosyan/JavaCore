@@ -2,7 +2,7 @@ package homework.exercise.homework9;
 
 public class Stack {
 
-    private int[] stack = new int[10];
+    private char[] stack = new char[10];
     private int tos;
 
     public Stack() {
@@ -10,14 +10,14 @@ public class Stack {
     }
 
     private void extend() {
-        int[] large = new int[stack.length + 5];
+        char[] large = new char[stack.length + 5];
         for (int i = 0; i < tos; i++) {
             large[i] = stack[i];
         }
         stack = large;
     }
 
-    public void push(int item) {
+    public void push(char item) {
         if (tos == stack.length - 1) {
             extend();
         } else {
