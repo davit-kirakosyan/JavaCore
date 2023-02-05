@@ -4,7 +4,9 @@ public class BraceCheckerTest {
 
     public static void main(String[] args) {
 
-        BraceChecker braceChecker = new BraceChecker("H{{{{{{{{{e)l))))))lo fr[[[[[[[[[[o((({{{{{[[[[]]]]]]]]]]]]]m [Java)");
+        String text = "H{{{{{{{{{e)l))))))lo fr[[[[[[[[[[o((({{{{{[[[[]]]]]]]]]]]]]m [Java)";
+
+        BraceChecker braceChecker = new BraceChecker(text);
 
         braceChecker.check();
     }
