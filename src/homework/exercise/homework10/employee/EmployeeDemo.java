@@ -1,4 +1,4 @@
-package homework.exercise.employee;
+package homework.exercise.homework10.employee;
 
 import java.util.Scanner;
 

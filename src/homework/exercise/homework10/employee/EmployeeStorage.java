@@ -1,4 +1,4 @@
-package homework.exercise.employee;
+package homework.exercise.homework10.employee;
 
 public class EmployeeStorage {
 
@@ -27,18 +27,26 @@ public class EmployeeStorage {
     }
 
     public void searchEmployeeByCompanyName(String keyword) {
+        boolean result = false;
         for (int i = 0; i < size; i++) {
             if (employees[i].getCompany().contains(keyword)) {
                 System.out.println(employees[i]);
             }
         }
+        if (!result){
+            System.out.println("Employee with " + keyword + " not found");
+        }
     }
 
     public void searchEmployeeByEmployeeID(String employeeByID) {
+        boolean result = false;
         for (int i = 0; i < size; i++) {
             if (employees[i].getEmployeeID().contains(employeeByID)) {
                 System.out.println(employees[i]);
             }
+        }
+        if (!result){
+            System.out.println("Employee with " + employeeByID + " not found");
         }
     }
 
