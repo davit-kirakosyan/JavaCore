@@ -33,7 +33,7 @@ public class EmployeeStorage {
                 System.out.println(employees[i]);
             }
         }
-        if (!result){
+        if (!result) {
             System.out.println("Employee with " + keyword + " not found");
         }
     }
@@ -45,7 +45,7 @@ public class EmployeeStorage {
                 System.out.println(employees[i]);
             }
         }
-        if (!result){
+        if (!result) {
             System.out.println("Employee with " + employeeByID + " not found");
         }
     }
@@ -54,3 +54,4 @@ public class EmployeeStorage {
         return id += (size + 1);
     }
 }
+

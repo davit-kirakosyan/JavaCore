@@ -21,19 +21,12 @@ public class EmployeeDemo {
                     isRun = false;
                     break;
                 case "1":
-                    System.out.println("please input Employee's name");
-                    String name = scanner.nextLine();
-                    System.out.println("please input Employee's surname");
-                    String surname = scanner.nextLine();
-                    System.out.println("please input Employee's salary");
-                    double salary = Double.parseDouble(scanner.nextLine());
-                    System.out.println("please input Employee's company");
-                    String company = scanner.nextLine();
-                    System.out.println("please input Employee's position");
-                    String position = scanner.nextLine();
-                    String emplID = employeeStorage.employeeId("A");
-                    Employee employee = new Employee(name, surname,
-                            emplID, salary, company, position);
+                    System.out.println("please input Employee's name, surname, salary, company, position");
+                    String arrStr = scanner.nextLine();
+                    String[] arrStrEmploy = arrStr.split(",");
+                    Employee employee = new Employee(arrStrEmploy[0], arrStrEmploy[1],
+                            employeeStorage.employeeId("A"), Double.parseDouble(arrStrEmploy[2]),
+                            arrStrEmploy[3], arrStrEmploy[4]);
                     employeeStorage.addEmployees(employee);
                     break;
                 case "2":
