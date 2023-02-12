@@ -3,11 +3,12 @@ package homework.exercise.homework10;
 import homework.exercise.homework10.employee.Command;
 import homework.exercise.homework10.employee.model.Employee;
 import homework.exercise.homework10.employee.storage.EmployeeStorage;
+import homework.exercise.homework10.employee.storage.impl.EmployeeStorageImpl;
 
 import java.util.Scanner;
 
 public class EmployeeDemo implements Command {
-    static EmployeeStorage employeeStorage = new EmployeeStorage();
+    static EmployeeStorage employeeStorage = new EmployeeStorageImpl();
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
