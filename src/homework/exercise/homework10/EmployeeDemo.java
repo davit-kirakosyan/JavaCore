@@ -12,6 +12,11 @@ public class EmployeeDemo implements Command {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        employeeStorage.addEmployees(new Employee("Poxos","Poxosyan", "A001", 26,"Java","Junior"));
+        employeeStorage.addEmployees(new Employee("Petros","Petrosyan", "B001", 31,"PHP","Junior"));
+        employeeStorage.addEmployees(new Employee("Martiros","Martirosyan", "M001", 321,"JS","Junior"));
+        employeeStorage.addEmployees(new Employee("Valod","Valodyan", "V001", 11,"Java","Middle"));
         boolean isRun = true;
         while (isRun) {
             Command.printCommands();

@@ -118,7 +118,7 @@ public class EmployeeStorageImpl implements EmployeeStorage {
     public void printOnlyActiveEmployees() {
         boolean result = true;
         for (int i = 0; i < size; i++) {
-            if (employees[i].getActive() == result){
+            if (employees[i].isActive() == result){
                 System.out.println(employees[i]);
             }
         }

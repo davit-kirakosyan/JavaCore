@@ -72,7 +72,7 @@ public class Employee {
         this.position = position;
     }
 
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
