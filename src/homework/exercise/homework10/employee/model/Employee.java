@@ -17,7 +17,7 @@ public class Employee {
     private Date registerDate;
     private Date dateOfBirthday;
 
-    Employee() {
+    public Employee() {
     }
 
     public Employee(String name, String surname, String employeeID, double salary, String company, String position, boolean active, Date registerDate, Date dateOfBirthday) {

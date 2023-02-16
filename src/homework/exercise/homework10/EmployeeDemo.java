@@ -16,11 +16,12 @@ public class EmployeeDemo implements Command {
     static EmployeeStorage employeeStorage = new EmployeeStorageImpl();
     static Scanner scanner = new Scanner(System.in);
     static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
     public static void main(String[] args) throws ParseException {
-        employeeStorage.addEmployees(new Employee("Poxos", "Poxosyan", "A001", 26, "Java", "Junior", true, new Date(),sdf.parse("11/03/2003")));
-//        employeeStorage.addEmployees(new Employee("Petros", "Petrosyan", "B001", 31, "PHP", "Junior",true, new Date(),sdf.format("12/12/2021")));
-//        employeeStorage.addEmployees(new Employee("Martiros", "Martirosyan", "M001", 321, "JS", "Junior",true, new Date(),sdf.format("22/12/2022")));
-//        employeeStorage.addEmployees(new Employee("Valod", "Valodyan", "V001", 11, "Java", "Middle",true, new Date(),sdf.format("23/12/2023")));
+        employeeStorage.addEmployees(new Employee("Poxos", "Poxosyan", "A001", 26, "Java", "Junior", true, new Date(), sdf.parse("11/03/2003")));
+        employeeStorage.addEmployees(new Employee("Petros", "Petrosyan", "B001", 31, "PHP", "Junior", true, new Date(), sdf.parse("12/12/2021")));
+        employeeStorage.addEmployees(new Employee("Martiros", "Martirosyan", "M001", 321, "JS", "Junior", true, new Date(), sdf.parse("22/12/2022")));
+        employeeStorage.addEmployees(new Employee("Valod", "Valodyan", "V001", 11, "Java", "Middle", true, new Date(), sdf.parse("23/12/2023")));
         boolean isRun = true;
         while (isRun) {
             Command.printCommands();
@@ -77,15 +78,33 @@ public class EmployeeDemo implements Command {
     private static void changeEmployeePositionByID() {
         System.out.println("Please input Employee's by id");
         String id = scanner.nextLine();
-        employeeStorage.changeEmployeePositionByID(id);
+        Employee employeeId = employeeStorage.getEmployeeId(id);
+        if (employeeId != null){
+            System.out.println("Please input Employee's by newPosition");
+            String newPosition = scanner.nextLine();
+            employeeId.setPosition(newPosition);
+        }else {
+            System.out.println("Employee with " + employeeId + " already exists!!");
+        }
+        System.out.println(employeeStorage.getEmployeeId(id));
     }
 
     private static void searchEmployeeBySalaryRang() {
-        System.out.println("please input salary min, max");
+        System.out.println("please input salary (min, max) or (max, min)");
         String strArr = scanner.nextLine();
-        double min = Double.parseDouble(strArr.split(",")[0]);
-        double max = Double.parseDouble(strArr.split(",")[1]);
-        employeeStorage.searchEmployeeBySalaryMinMax(min, max);
+        String[] rangStrArr = strArr.split(",");
+        double min = Double.parseDouble(rangStrArr[0]);
+        double max = Double.parseDouble(rangStrArr[1]);
+        if (min < max) {
+            min = Double.parseDouble(rangStrArr[0]);
+            max = Double.parseDouble(rangStrArr[1]);
+            employeeStorage.searchEmployeeBySalaryMinMax(min, max);
+        } else if (max < min) {
+            max = Double.parseDouble(rangStrArr[0]);
+            min = Double.parseDouble(rangStrArr[1]);
+            employeeStorage.searchEmployeeBySalaryMaxMin(max,min);
+        }
+
     }
 
     private static void searchEmployeeByCompanyName() {
@@ -109,7 +128,8 @@ public class EmployeeDemo implements Command {
         if (employeeById == null) {
             Employee employee = new Employee(arrStrEmploy[0], arrStrEmploy[1],
                     employeeID, Double.parseDouble(arrStrEmploy[3]),
-                    arrStrEmploy[4], arrStrEmploy[5],true,new Date(),sdf.parse(arrStrEmploy[6].toLowerCase(Locale.ROOT)));
+                    arrStrEmploy[4], arrStrEmploy[5], true, new Date(),
+                    sdf.parse(arrStrEmploy[6].toLowerCase(Locale.ROOT)));
             employeeStorage.addEmployees(employee);
             System.out.println("Employee was added");
         } else {

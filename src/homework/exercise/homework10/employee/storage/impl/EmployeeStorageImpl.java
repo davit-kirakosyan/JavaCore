@@ -3,6 +3,7 @@ package homework.exercise.homework10.employee.storage.impl;
 import homework.exercise.homework10.employee.model.Employee;
 import homework.exercise.homework10.employee.storage.EmployeeStorage;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class EmployeeStorageImpl implements EmployeeStorage {
@@ -39,7 +40,6 @@ public class EmployeeStorageImpl implements EmployeeStorage {
         for (int i = 0; i < size; i++) {
             if (employees[i].getCompany().contains(keyword)) {
                 result = true;
-                System.out.println(employees[i]);
             }
         }
         if (!result) {
@@ -53,7 +53,6 @@ public class EmployeeStorageImpl implements EmployeeStorage {
         for (int i = 0; i < size; i++) {
             if (employees[i].getEmployeeID().contains(employeeByID)) {
                 result = true;
-                System.out.println(employees[i]);
             }
         }
         if (!result) {
@@ -64,7 +63,7 @@ public class EmployeeStorageImpl implements EmployeeStorage {
     @Override
     public Employee getEmployeeId(String id) {
         for (int i = 0; i < size; i++) {
-            if (employees[i].getEmployeeID().equals(id)) {
+            if (employees[i].getEmployeeID().toUpperCase(Locale.ROOT).equals(id)) {
                 return employees[i];
             }
         }
@@ -82,14 +81,11 @@ public class EmployeeStorageImpl implements EmployeeStorage {
     }
 
     @Override
-    public void changeEmployeePositionByID(String id) {
-        Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < size; i++) {
-            if (employees[i].getEmployeeID().equalsIgnoreCase(id)) {
+    public void searchEmployeeBySalaryMaxMin(double max, double min) {
+        for (int i = size - 1; i >= 0; i--) {
+            if (employees[i].getSalary() <= max &&
+                    employees[i].getSalary() >= min) {
                 System.out.println(employees[i]);
-                System.out.println("Please input new position");
-                String newPosition = scanner.nextLine();
-                employees[i].setPosition(newPosition);
             }
         }
     }
@@ -99,7 +95,6 @@ public class EmployeeStorageImpl implements EmployeeStorage {
         for (int i = 0; i < size; i++) {
             if (employees[i].getEmployeeID().equalsIgnoreCase(id)) {
                 employees[i].setActive(false);
-                System.out.println(employees[i]);
             }
         }
     }
@@ -109,7 +104,6 @@ public class EmployeeStorageImpl implements EmployeeStorage {
         for (int i = 0; i < size; i++) {
             if (employees[i].getEmployeeID().equalsIgnoreCase(id)) {
                 employees[i].setActive(true);
-                System.out.println(employees[i]);
             }
         }
     }
@@ -118,7 +112,7 @@ public class EmployeeStorageImpl implements EmployeeStorage {
     public void printOnlyActiveEmployees() {
         boolean result = true;
         for (int i = 0; i < size; i++) {
-            if (employees[i].isActive() == result){
+            if (employees[i].isActive() == result) {
                 System.out.println(employees[i]);
             }
         }
