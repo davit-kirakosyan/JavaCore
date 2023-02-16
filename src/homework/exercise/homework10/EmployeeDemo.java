@@ -5,18 +5,22 @@ import homework.exercise.homework10.employee.model.Employee;
 import homework.exercise.homework10.employee.storage.EmployeeStorage;
 import homework.exercise.homework10.employee.storage.impl.EmployeeStorageImpl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class EmployeeDemo implements Command {
     static EmployeeStorage employeeStorage = new EmployeeStorageImpl();
     static Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) {
-
-        employeeStorage.addEmployees(new Employee("Poxos","Poxosyan", "A001", 26,"Java","Junior"));
-        employeeStorage.addEmployees(new Employee("Petros","Petrosyan", "B001", 31,"PHP","Junior"));
-        employeeStorage.addEmployees(new Employee("Martiros","Martirosyan", "M001", 321,"JS","Junior"));
-        employeeStorage.addEmployees(new Employee("Valod","Valodyan", "V001", 11,"Java","Middle"));
+    static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    public static void main(String[] args) throws ParseException {
+        employeeStorage.addEmployees(new Employee("Poxos", "Poxosyan", "A001", 26, "Java", "Junior", true, new Date(),sdf.parse("11/03/2003")));
+//        employeeStorage.addEmployees(new Employee("Petros", "Petrosyan", "B001", 31, "PHP", "Junior",true, new Date(),sdf.format("12/12/2021")));
+//        employeeStorage.addEmployees(new Employee("Martiros", "Martirosyan", "M001", 321, "JS", "Junior",true, new Date(),sdf.format("22/12/2022")));
+//        employeeStorage.addEmployees(new Employee("Valod", "Valodyan", "V001", 11, "Java", "Middle",true, new Date(),sdf.format("23/12/2023")));
         boolean isRun = true;
         while (isRun) {
             Command.printCommands();
@@ -96,8 +100,8 @@ public class EmployeeDemo implements Command {
         employeeStorage.searchEmployeeByEmployeeID(employeeByID);
     }
 
-    private static void addEmployee() {
-        System.out.println("please input Employee's name, surname, employeeID, salary, company, position");
+    private static void addEmployee() throws ParseException {
+        System.out.println("please input Employee's name, surname, employeeID, salary, company, position, dateOfBirthday(day/month/year)");
         String arrStr = scanner.nextLine();
         String[] arrStrEmploy = arrStr.split(",");
         String employeeID = arrStrEmploy[2];
@@ -105,8 +109,7 @@ public class EmployeeDemo implements Command {
         if (employeeById == null) {
             Employee employee = new Employee(arrStrEmploy[0], arrStrEmploy[1],
                     employeeID, Double.parseDouble(arrStrEmploy[3]),
-                    arrStrEmploy[4], arrStrEmploy[5]);
-            employee.setActive(true);
+                    arrStrEmploy[4], arrStrEmploy[5],true,new Date(),sdf.parse(arrStrEmploy[6].toLowerCase(Locale.ROOT)));
             employeeStorage.addEmployees(employee);
             System.out.println("Employee was added");
         } else {

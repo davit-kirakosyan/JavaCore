@@ -1,9 +1,12 @@
 package homework.exercise.homework10.employee.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class Employee {
-
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private static SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     private String name;
     private String surname;
     private String employeeID;
@@ -11,17 +14,22 @@ public class Employee {
     private String company;
     private String position;
     private boolean active;
+    private Date registerDate;
+    private Date dateOfBirthday;
 
     Employee() {
     }
 
-    public Employee(String name, String surname, String employeeID, double salary, String company, String position) {
+    public Employee(String name, String surname, String employeeID, double salary, String company, String position, boolean active, Date registerDate, Date dateOfBirthday) {
         this.name = name;
         this.surname = surname;
         this.employeeID = employeeID;
         this.salary = salary;
         this.company = company;
         this.position = position;
+        this.active = active;
+        this.registerDate = registerDate;
+        this.dateOfBirthday = dateOfBirthday;
     }
 
     public String getName() {
@@ -80,6 +88,22 @@ public class Employee {
         this.active = active;
     }
 
+    public Date getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public Date getDateOfBirthday() {
+        return dateOfBirthday;
+    }
+
+    public void setDateOfBirthday(Date dateOfBirthday) {
+        this.dateOfBirthday = dateOfBirthday;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,7 +117,10 @@ public class Employee {
         if (!Objects.equals(surname, employee.surname)) return false;
         if (!Objects.equals(employeeID, employee.employeeID)) return false;
         if (!Objects.equals(company, employee.company)) return false;
-        return Objects.equals(position, employee.position);
+        if (!Objects.equals(position, employee.position)) return false;
+        if (!Objects.equals(registerDate, employee.registerDate))
+            return false;
+        return Objects.equals(dateOfBirthday, employee.dateOfBirthday);
     }
 
     @Override
@@ -108,6 +135,8 @@ public class Employee {
         result = 31 * result + (company != null ? company.hashCode() : 0);
         result = 31 * result + (position != null ? position.hashCode() : 0);
         result = 31 * result + (active ? 1 : 0);
+        result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
+        result = 31 * result + (dateOfBirthday != null ? dateOfBirthday.hashCode() : 0);
         return result;
     }
 
@@ -120,7 +149,9 @@ public class Employee {
                 ", salary=" + salary +
                 ", company='" + company + '\'' +
                 ", position='" + position + '\'' +
-                ", active='" + active + '\'' +
+                ", active=" + active +
+                ", registerDate=" + sdf2.format(registerDate) +
+                ", dateOfBirthday=" + sdf.format(dateOfBirthday) +
                 '}';
     }
 }
