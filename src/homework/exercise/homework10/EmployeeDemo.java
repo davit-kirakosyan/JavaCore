@@ -79,32 +79,23 @@ public class EmployeeDemo implements Command {
         System.out.println("Please input Employee's by id");
         String id = scanner.nextLine();
         Employee employeeId = employeeStorage.getEmployeeId(id);
-        if (employeeId != null){
+        if (employeeId != null) {
             System.out.println("Please input Employee's by newPosition");
             String newPosition = scanner.nextLine();
             employeeId.setPosition(newPosition);
-        }else {
+        } else {
             System.out.println("Employee with " + employeeId + " already exists!!");
         }
         System.out.println(employeeStorage.getEmployeeId(id));
     }
 
     private static void searchEmployeeBySalaryRang() {
-        System.out.println("please input salary (min, max) or (max, min)");
+        System.out.println("please input salary min, max");
         String strArr = scanner.nextLine();
         String[] rangStrArr = strArr.split(",");
         double min = Double.parseDouble(rangStrArr[0]);
         double max = Double.parseDouble(rangStrArr[1]);
-        if (min < max) {
-            min = Double.parseDouble(rangStrArr[0]);
-            max = Double.parseDouble(rangStrArr[1]);
-            employeeStorage.searchEmployeeBySalaryMinMax(min, max);
-        } else if (max < min) {
-            max = Double.parseDouble(rangStrArr[0]);
-            min = Double.parseDouble(rangStrArr[1]);
-            employeeStorage.searchEmployeeBySalaryMaxMin(max,min);
-        }
-
+        employeeStorage.searchEmployeeBySalaryMinMax(min, max);
     }
 
     private static void searchEmployeeByCompanyName() {

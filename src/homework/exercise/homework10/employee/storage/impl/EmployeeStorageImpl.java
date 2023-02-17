@@ -81,16 +81,6 @@ public class EmployeeStorageImpl implements EmployeeStorage {
     }
 
     @Override
-    public void searchEmployeeBySalaryMaxMin(double max, double min) {
-        for (int i = size - 1; i >= 0; i--) {
-            if (employees[i].getSalary() <= max &&
-                    employees[i].getSalary() >= min) {
-                System.out.println(employees[i]);
-            }
-        }
-    }
-
-    @Override
     public void inactiveEmployeeByID(String id) {
         for (int i = 0; i < size; i++) {
             if (employees[i].getEmployeeID().equalsIgnoreCase(id)) {

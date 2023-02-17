@@ -14,8 +14,6 @@ public interface EmployeeStorage {
     Employee getEmployeeId(String id);
 
     void searchEmployeeBySalaryMinMax(double min, double max);
-    void searchEmployeeBySalaryMaxMin(double max, double min);
-
     void inactiveEmployeeByID(String id);
 
     void activateEmployeeByID(String id);
