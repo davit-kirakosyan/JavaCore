@@ -7,7 +7,6 @@ import homework.exercise.homework10.employee.storage.impl.EmployeeStorageImpl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
@@ -116,11 +115,12 @@ public class EmployeeDemo implements Command {
         String[] arrStrEmploy = arrStr.split(",");
         String employeeID = arrStrEmploy[2];
         Employee employeeById = employeeStorage.getEmployeeId(employeeID);
+        Date date = sdf.parse(arrStrEmploy[6]);
         if (employeeById == null) {
             Employee employee = new Employee(arrStrEmploy[0], arrStrEmploy[1],
                     employeeID, Double.parseDouble(arrStrEmploy[3]),
                     arrStrEmploy[4], arrStrEmploy[5], true, new Date(),
-                    sdf.parse(arrStrEmploy[6].toLowerCase(Locale.ROOT)));
+                    date);
             employeeStorage.addEmployees(employee);
             System.out.println("Employee was added");
         } else {
