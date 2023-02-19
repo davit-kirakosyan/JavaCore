@@ -1,10 +1,10 @@
 package homework.exercise.homework10.employee.storage.impl;
 
+import homework.exercise.homework10.employee.model.Company;
 import homework.exercise.homework10.employee.model.Employee;
 import homework.exercise.homework10.employee.storage.EmployeeStorage;
 
 import java.util.Locale;
-import java.util.Scanner;
 
 public class EmployeeStorageImpl implements EmployeeStorage {
 
@@ -35,11 +35,12 @@ public class EmployeeStorageImpl implements EmployeeStorage {
     }
 
     @Override
-    public void searchEmployeeByCompanyName(String keyword) {
+    public void searchByCompany(Company keyword) {
         boolean result = false;
         for (int i = 0; i < size; i++) {
-            if (employees[i].getCompany().contains(keyword)) {
+            if (employees[i].getCompany().equals(keyword)) {
                 result = true;
+                System.out.println(employees[i]);
             }
         }
         if (!result) {
@@ -53,6 +54,7 @@ public class EmployeeStorageImpl implements EmployeeStorage {
         for (int i = 0; i < size; i++) {
             if (employees[i].getEmployeeID().contains(employeeByID)) {
                 result = true;
+                System.out.println(employees[i]);
             }
         }
         if (!result) {
@@ -85,6 +87,8 @@ public class EmployeeStorageImpl implements EmployeeStorage {
         for (int i = 0; i < size; i++) {
             if (employees[i].getEmployeeID().equalsIgnoreCase(id)) {
                 employees[i].setActive(false);
+                employees[i].getCompany().setCountOfEmployees(
+                        employees[i].getCompany().getCountOfEmployees() - 1);
             }
         }
     }
@@ -94,6 +98,8 @@ public class EmployeeStorageImpl implements EmployeeStorage {
         for (int i = 0; i < size; i++) {
             if (employees[i].getEmployeeID().equalsIgnoreCase(id)) {
                 employees[i].setActive(true);
+                employees[i].getCompany().setCountOfEmployees(
+                        employees[i].getCompany().getCountOfEmployees() + 1);
             }
         }
     }

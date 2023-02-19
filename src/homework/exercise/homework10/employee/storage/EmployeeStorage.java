@@ -1,5 +1,6 @@
 package homework.exercise.homework10.employee.storage;
 
+import homework.exercise.homework10.employee.model.Company;
 import homework.exercise.homework10.employee.model.Employee;
 
 public interface EmployeeStorage {
@@ -7,7 +8,7 @@ public interface EmployeeStorage {
 
     void printAllEmployees();
 
-    void searchEmployeeByCompanyName(String keyword);
+    void searchByCompany(Company keyword);
 
     void searchEmployeeByEmployeeID(String employeeByID);
 

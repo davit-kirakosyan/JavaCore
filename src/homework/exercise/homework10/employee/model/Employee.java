@@ -1,5 +1,7 @@
 package homework.exercise.homework10.employee.model;
 
+import homework.exercise.homework10.employee.utill.DateUtil;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -11,7 +13,7 @@ public class Employee {
     private String surname;
     private String employeeID;
     private double salary;
-    private String company;
+    private Company company;
     private String position;
     private boolean active;
     private Date registerDate;
@@ -20,7 +22,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String surname, String employeeID, double salary, String company, String position, boolean active, Date registerDate, Date dateOfBirthday) {
+    public Employee(String name, String surname, String employeeID, double salary, Company company, String position, boolean active, Date registerDate, Date dateOfBirthday) {
         this.name = name;
         this.surname = surname;
         this.employeeID = employeeID;
@@ -64,11 +66,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(String company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
@@ -150,8 +152,8 @@ public class Employee {
                 ", company='" + company + '\'' +
                 ", position='" + position + '\'' +
                 ", active=" + active +
-                ", registerDate=" + sdf2.format(registerDate) +
-                ", dateOfBirthday=" + sdf.format(dateOfBirthday) +
+                ", registerDate=" + DateUtil.dateToString(registerDate) +
+                ", dateOfBirthday=" + DateUtil.dateToString(dateOfBirthday) +
                 '}';
     }
 }
