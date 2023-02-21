@@ -16,6 +16,8 @@ public interface MedicalCenterStorage {
 
     Doctor getDoctorById(String doctorId);
 
+    Doctor getDoctorByEmail(String email);
+
     void printAllPatient();
 
     Patient getPatientById(String patientId);

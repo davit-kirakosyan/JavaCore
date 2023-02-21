@@ -59,8 +59,9 @@ public class MedicalCenterStorageImpl implements MedicalCenterStorage {
     @Override
     public void deleteDoctorById(String doctorId){
         for (int i = 0; i < sizeDoctors; i++) {
-            if (doctors[i].getId().equals(doctorId)){
+            if (doctors[i].getId().equalsIgnoreCase(doctorId)){
                 delete(i);
+                System.err.println("deleted");
                 break;
             }
         }
@@ -85,6 +86,15 @@ public class MedicalCenterStorageImpl implements MedicalCenterStorage {
     public Doctor getDoctorById(String doctorId) {
         for (int i = 0; i < sizeDoctors; i++) {
             if (doctors[i].getId().equalsIgnoreCase(doctorId)) {
+                return doctors[i];
+            }
+        }
+        return null;
+    }
+    @Override
+    public Doctor getDoctorByEmail(String email) {
+        for (int i = 0; i < sizeDoctors; i++) {
+            if (doctors[i].getEmail().equalsIgnoreCase(email)) {
                 return doctors[i];
             }
         }

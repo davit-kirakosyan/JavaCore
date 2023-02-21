@@ -2,7 +2,7 @@ package homework.exercise.homework11.medicalCenter.model;
 
 import java.util.Objects;
 
-public class Doctor extends Person{
+public class Doctor extends Person {
     private String email;
     private String profession;
 
@@ -53,9 +53,9 @@ public class Doctor extends Person{
 
     @Override
     public String toString() {
-        return "Doctor{" +
+        return "Doctor{" + super.toString() + '\'' +
                 "email='" + email + '\'' +
                 ", profession='" + profession + '\'' +
-                "} " + super.toString();
+                "} ";
     }
 }

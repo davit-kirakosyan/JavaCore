@@ -57,9 +57,9 @@ public class Patient extends Person {
 
     @Override
     public String toString() {
-        return "Patient{" +
+        return "Patient{" +  super.toString() +
                 "doctor=" + doctor +
                 ", register=" + DateUtil.toDateString(registerDate) +
-                '}' + super.toString();
+                '}';
     }
 }
