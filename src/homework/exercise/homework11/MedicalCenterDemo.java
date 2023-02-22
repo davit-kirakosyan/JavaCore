@@ -15,7 +15,7 @@ public class MedicalCenterDemo implements Commands {
     private static MedicalCenterStorage medicalCenterStorage = new MedicalCenterStorageImpl();
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         Doctor doctor = new Doctor("A001", "Poxos", "Poxosyna", "123456", "poxos@mail.com", "Xirurg");
         medicalCenterStorage.addDoctor(doctor);
         Doctor doctor1 = new Doctor("A041", "Ando", "Poxosyna", "123456", "ando@mail.com", "Xirurg");
@@ -24,8 +24,13 @@ public class MedicalCenterDemo implements Commands {
         medicalCenterStorage.addDoctor(doctor2);
         Doctor doctor3 = new Doctor("Q01", "petros", "petrosyan", "0123741", "petros@mail.com", "profesor");
         medicalCenterStorage.addDoctor(doctor3);
-        medicalCenterStorage.addPatient(new Patient("G1520", "martiros", "martirosyan", "5246321", doctor, DateUtil.toDateString("12/11/2121 10:30")));
-        medicalCenterStorage.addPatient(new Patient("G1221", "zmruxt", "zmruxtyan", "125246321", doctor1, DateUtil.toDateString("06/07/2006 18:00")));
+        try {
+            medicalCenterStorage.addPatient(new Patient("G1520", "martiros", "martirosyan", "5246321", doctor, DateUtil.toDateString("12/11/2121 10:30")));
+            medicalCenterStorage.addPatient(new Patient("G1221", "zmruxt", "zmruxtyan", "125246321", doctor1, DateUtil.toDateString("06/07/2006 18:00")));
+        } catch (ParseException e) {
+            System.err.println(e.getMessage());
+        }
+
         boolean isRun = true;
         while (isRun) {
             Commands.printCommands();
@@ -85,7 +90,7 @@ public class MedicalCenterDemo implements Commands {
         medicalCenterStorage.printAllPatientByDoctor(doctor);
     }
 
-    private static void addPatient() throws ParseException {
+    private static void addPatient() {
         medicalCenterStorage.printDoctors();
         System.out.println("Please input Doctor id");
         String doctorId = scanner.nextLine();
