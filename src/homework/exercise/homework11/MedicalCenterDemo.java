@@ -1,7 +1,7 @@
 package homework.exercise.homework11;
 
 import homework.exercise.homework11.medicalCenter.Commands;
-import homework.exercise.homework11.medicalCenter.exception.MedicalException;
+import homework.exercise.homework11.medicalCenter.exception.MedicalNotFoundException;
 import homework.exercise.homework11.medicalCenter.model.Doctor;
 import homework.exercise.homework11.medicalCenter.model.Patient;
 import homework.exercise.homework11.medicalCenter.storage.Impl.MedicalCenterStorageImpl;
@@ -96,7 +96,6 @@ public class MedicalCenterDemo implements Commands {
         System.out.println("Please input Doctor id");
         String doctorId = scanner.nextLine();
         Doctor doctorById = null;
-        try {
             doctorById = medicalCenterStorage.getDoctorById(doctorId);
             if (doctorById != null) {
                 System.out.println("Please input Patient's id, name, surname, phone, " +
@@ -121,11 +120,7 @@ public class MedicalCenterDemo implements Commands {
                     System.out.println("Doctor with " + doctorId + " already exists!!");
                 }
             }
-        } catch (MedicalException e) {
-            e.printStackTrace();
         }
-
-    }
 
     private static void changeDoctorDataById() {
         medicalCenterStorage.printDoctors();
@@ -156,8 +151,6 @@ public class MedicalCenterDemo implements Commands {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.err.println(e.getMessage());
             changeDoctorDataById();
-        }catch (MedicalException e){
-            e.printStackTrace();
         }
 
     }
