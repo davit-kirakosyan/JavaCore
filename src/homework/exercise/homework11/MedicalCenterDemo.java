@@ -1,6 +1,7 @@
 package homework.exercise.homework11;
 
 import homework.exercise.homework11.medicalCenter.Commands;
+import homework.exercise.homework11.medicalCenter.exception.MedicalException;
 import homework.exercise.homework11.medicalCenter.model.Doctor;
 import homework.exercise.homework11.medicalCenter.model.Patient;
 import homework.exercise.homework11.medicalCenter.storage.Impl.MedicalCenterStorageImpl;
@@ -94,44 +95,52 @@ public class MedicalCenterDemo implements Commands {
         medicalCenterStorage.printDoctors();
         System.out.println("Please input Doctor id");
         String doctorId = scanner.nextLine();
-        Doctor doctorById = medicalCenterStorage.getDoctorById(doctorId);
-        if (doctorById != null) {
-            System.out.println("Please input Patient's id, name, surname, phone, " +
-                    "registerDateTime(day/month/year hour:minute)");
-            String dataStr = scanner.nextLine();
-            String[] dataArrStr = dataStr.split(",");
-            String patientId = dataArrStr[0];
-            Patient patientById = medicalCenterStorage.getPatientById(patientId);
-            if (patientById == null) {
-                try {
-                    Patient patient = new Patient(patientId, dataArrStr[1], dataArrStr[2], dataArrStr[3],
-                            doctorById, DateUtil.toDateString(dataArrStr[4]));
-                    medicalCenterStorage.addPatient(patient);
-                } catch (ParseException e) {
-                    System.err.println("Wrong date " + e + " please input date dd/MM/yyyy hh:mm");
-                    addPatient();
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.err.println(e.getMessage());
-                    addPatient();
+        Doctor doctorById = null;
+        try {
+            doctorById = medicalCenterStorage.getDoctorById(doctorId);
+            if (doctorById != null) {
+                System.out.println("Please input Patient's id, name, surname, phone, " +
+                        "registerDateTime(day/month/year hour:minute)");
+                String dataStr = scanner.nextLine();
+                String[] dataArrStr = dataStr.split(",");
+                String patientId = dataArrStr[0];
+                Patient patientById = medicalCenterStorage.getPatientById(patientId);
+                if (patientById == null) {
+                    try {
+                        Patient patient = new Patient(patientId, dataArrStr[1], dataArrStr[2], dataArrStr[3],
+                                doctorById, DateUtil.toDateString(dataArrStr[4]));
+                        medicalCenterStorage.addPatient(patient);
+                    } catch (ParseException e) {
+                        System.err.println("Wrong date " + e + " please input date dd/MM/yyyy hh:mm");
+                        addPatient();
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.err.println(e.getMessage());
+                        addPatient();
+                    }
+                } else {
+                    System.out.println("Doctor with " + doctorId + " already exists!!");
                 }
-            } else {
-                System.out.println("Employee with " + doctorId + " already exists!!");
             }
+        } catch (MedicalException e) {
+            e.printStackTrace();
         }
+
     }
 
     private static void changeDoctorDataById() {
         medicalCenterStorage.printDoctors();
+        Doctor doctorById = null;
+        Doctor doctorByEmail = null;
         try {
             System.out.println("Please input Doctor Id");
             String doctorId = scanner.nextLine();
-            Doctor doctorById = medicalCenterStorage.getDoctorById(doctorId);
+            doctorById = medicalCenterStorage.getDoctorById(doctorId);
             if (doctorById != null) {
                 System.out.println("Please input new Doctor's name, surname, email, phone, profession");
                 String dataStr = scanner.nextLine();
                 String[] dataArrStr = dataStr.split(",");
                 String email = dataArrStr[2];
-                Doctor doctorByEmail = medicalCenterStorage.getDoctorByEmail(email);
+                doctorByEmail = medicalCenterStorage.getDoctorByEmail(email);
                 if (doctorByEmail != null) {
                     doctorById.setName(dataArrStr[0]);
                     doctorById.setSurname(dataArrStr[1]);
@@ -139,14 +148,16 @@ public class MedicalCenterDemo implements Commands {
                     doctorById.setPhoneNumber(dataArrStr[3]);
                     doctorById.setProfession(dataArrStr[4]);
                 } else {
-                    System.out.println("Employee with " + email + " already exists!!");
+                    System.out.println("Doctor with " + email + " already exists!!");
                 }
             } else {
-                System.out.println("Employee with " + doctorId + " already exists!!");
+                System.out.println("Doctor with " + doctorId + " already exists!!");
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.err.println(e.getMessage());
             changeDoctorDataById();
+        }catch (MedicalException e){
+            e.printStackTrace();
         }
 
     }
@@ -178,10 +189,10 @@ public class MedicalCenterDemo implements Commands {
                             email, dataArrStr[4], dataArrStr[5]);
                     medicalCenterStorage.addDoctor(doctor);
                 } else {
-                    System.err.println("Employee with " + email + " already exists!!!");
+                    System.err.println("Doctor with " + email + " already exists!!!");
                 }
             } else {
-                System.err.println("Employee with " + doctorId + " already exists!!!");
+                System.err.println("Doctor with " + doctorId + " already exists!!!");
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.err.println(e.getMessage());
