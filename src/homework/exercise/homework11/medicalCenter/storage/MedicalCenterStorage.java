@@ -1,26 +1,21 @@
 package homework.exercise.homework11.medicalCenter.storage;
 
-import homework.exercise.homework11.medicalCenter.model.Doctor;
-import homework.exercise.homework11.medicalCenter.model.Patient;
+import homework.exercise.homework11.medicalCenter.model.Person;
+
+import java.util.Date;
 
 public interface MedicalCenterStorage {
-    void addDoctor(Doctor doctor);
+    void add(Person person);
 
-    void addPatient(Patient patient);
+    void print();
 
     void deleteDoctorById(String doctorId);
 
-    void printDoctors();
-
     void searchDoctorByProfession(String profession);
 
-    Doctor getDoctorById(String doctorId);
+    Person getById(String doctorId);
 
-    Doctor getDoctorByEmail(String email);
-
-    void printAllPatient();
-
-    Patient getPatientById(String patientId);
+    Person getDoctorByEmail(String email);
 
     void printToDays(String toDays);
 

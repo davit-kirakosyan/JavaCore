@@ -10,8 +10,7 @@ public interface Commands {
     int ADD_PATIENT = 5;
     int PRINT_ALL_PATIENTS_BY_DOCTOR = 6;
     int PRINT_TO_DAYS_PATIENT = 7;
-    int PRINT_ALL_DOCTORS = 8;
-    int PRINT_ALL_PATIENT = 9;
+    int PRINT_ALL_DOCTORS_BY_PATIENT = 8;
 
     static void printCommands() {
         System.out.println("Please input " + EXIT + " for EXIT");
@@ -22,7 +21,6 @@ public interface Commands {
         System.out.println("Please input " + ADD_PATIENT + " for ADD_PATIENT");
         System.out.println("Please input " + PRINT_ALL_PATIENTS_BY_DOCTOR + " for PRINT_ALL_PATIENTS_BY_DOCTOR");
         System.out.println("Please input " + PRINT_TO_DAYS_PATIENT + " for PRINT_TO_DAYS_PATIENT");
-        System.out.println("Please input " + PRINT_ALL_DOCTORS + " for PRINT_ALL_DOCTORS");
-        System.out.println("Please input " + PRINT_ALL_PATIENT + " for PRINT_ALL_PATIENT");
+        System.out.println("Please input " + PRINT_ALL_DOCTORS_BY_PATIENT + " for PRINT_ALL_DOCTORS");
     }
 }
