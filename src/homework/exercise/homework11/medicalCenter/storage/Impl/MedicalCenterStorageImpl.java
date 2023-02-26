@@ -7,6 +7,7 @@ import homework.exercise.homework11.medicalCenter.storage.MedicalCenterStorage;
 import homework.exercise.homework11.medicalCenter.util.DateUtil;
 
 import java.util.Date;
+import java.util.Locale;
 
 public class MedicalCenterStorageImpl implements MedicalCenterStorage {
     private Person[] persons = new Person[10];
@@ -62,7 +63,7 @@ public class MedicalCenterStorageImpl implements MedicalCenterStorage {
     public void searchDoctorByProfession(String profession) {
         for (int i = 0; i < size; i++) {
             if (persons[i] instanceof Doctor &&
-                    ((Doctor) persons[i]).getProfession().equalsIgnoreCase(profession)) {
+                    ((Doctor) persons[i]).getProfession().name().equals(profession)) {
                 System.out.println(persons[i]);
             }
         }

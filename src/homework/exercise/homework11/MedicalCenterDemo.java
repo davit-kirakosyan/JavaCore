@@ -4,11 +4,13 @@ import homework.exercise.homework11.medicalCenter.Commands;
 import homework.exercise.homework11.medicalCenter.model.Doctor;
 import homework.exercise.homework11.medicalCenter.model.Patient;
 import homework.exercise.homework11.medicalCenter.model.Person;
+import homework.exercise.homework11.medicalCenter.model.Profession;
 import homework.exercise.homework11.medicalCenter.storage.Impl.MedicalCenterStorageImpl;
 import homework.exercise.homework11.medicalCenter.storage.MedicalCenterStorage;
 import homework.exercise.homework11.medicalCenter.util.DateUtil;
 
 import java.text.ParseException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class MedicalCenterDemo implements Commands {
@@ -17,13 +19,13 @@ public class MedicalCenterDemo implements Commands {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Doctor doctor = new Doctor("A001", "Poxos", "Poxosyna", "123456", "poxos@mail.com", "Xirurg");
+        Doctor doctor = new Doctor("A001", "Poxos", "Poxosyna", "123456", "poxos@mail.com", Profession.INTERNISTS);
         medicalCenterStorage.add(doctor);
-        Doctor doctor1 = new Doctor("A041", "Ando", "Poxosyna", "123456", "ando@mail.com", "Xirurg");
+        Doctor doctor1 = new Doctor("A041", "Ando", "Poxosyna", "123456", "ando@mail.com", Profession.FAMILY_PHYSICIANS);
         medicalCenterStorage.add(doctor1);
-        Doctor doctor2 = new Doctor("B001", "valod", "valodik", "369852", "valod@mail.com", "asistent");
+        Doctor doctor2 = new Doctor("B001", "valod", "valodik", "369852", "valod@mail.com", Profession.EMERGENCY_PHYSICIANS);
         medicalCenterStorage.add(doctor2);
-        Doctor doctor3 = new Doctor("Q01", "petros", "petrosyan", "0123741", "petros@mail.com", "profesor");
+        Doctor doctor3 = new Doctor("Q01", "petros", "petrosyan", "0123741", "petros@mail.com", Profession.PSYCHIATRISTS);
         medicalCenterStorage.add(doctor3);
         try {
             medicalCenterStorage.add(new Patient("G1520", "martiros", "martirosyan", "5246321", doctor, DateUtil.toDateString("12/11/2121 10:30")));
@@ -125,7 +127,11 @@ public class MedicalCenterDemo implements Commands {
             String parsonId = scanner.nextLine();
             Person parsonById = medicalCenterStorage.getById(parsonId);
             if (parsonById != null) {
-                System.out.println("Please input new Doctor's name, surname, email, phone, profession");
+                System.out.print("Please input new Doctor's name, surname, email, phone, profession( ");
+                for (Profession value : Profession.values()) {
+                    System.out.print(value + ", ");
+                }
+                System.out.println(")");
                 String dataStr = scanner.nextLine();
                 String[] dataArrStr = dataStr.split(",");
                 String email = dataArrStr[2];
@@ -136,7 +142,7 @@ public class MedicalCenterDemo implements Commands {
                     doctor.setSurname(dataArrStr[1]);
                     doctor.setEmail(dataArrStr[2]);
                     doctor.setPhoneNumber(dataArrStr[3]);
-                    doctor.setProfession(dataArrStr[4]);
+                    doctor.setProfession(Profession.valueOf(dataArrStr[4].toUpperCase()));
                 } else {
                     System.out.println("Doctor with " + email + " already exists!!");
                 }
@@ -164,7 +170,11 @@ public class MedicalCenterDemo implements Commands {
 
     private static void addDoctor() {
         try {
-            System.out.println("Please input Doctor's id, name, surname, phone, email, profession");
+            System.out.print("Please input Doctor's id, name, surname, phone, email, profession( ");
+            for (Profession value : Profession.values()) {
+                System.out.print(value + ", ");
+            }
+            System.out.println(")");
             String dataStr = scanner.nextLine();
             String[] dataArrStr = dataStr.split(",");
             String doctorId = dataArrStr[0];
@@ -174,7 +184,7 @@ public class MedicalCenterDemo implements Commands {
                 Person doctorByEmail = medicalCenterStorage.getDoctorByEmail(email);
                 if (doctorByEmail == null) {
                     Doctor doctor = new Doctor(doctorId, dataArrStr[1], dataArrStr[2],
-                            dataArrStr[3], email, dataArrStr[5]);
+                            dataArrStr[3], email, Profession.valueOf(dataArrStr[5].toUpperCase(Locale.ROOT)));
                     medicalCenterStorage.add(doctor);
                 } else {
                     System.err.println("Doctor with " + email + " already exists!!!");
