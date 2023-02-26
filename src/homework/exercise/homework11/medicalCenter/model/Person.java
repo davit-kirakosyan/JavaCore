@@ -2,7 +2,7 @@ package homework.exercise.homework11.medicalCenter.model;
 
 import java.util.Objects;
 
-public class Person {
+public abstract class Person {
 
     private String id;
     private String name;
