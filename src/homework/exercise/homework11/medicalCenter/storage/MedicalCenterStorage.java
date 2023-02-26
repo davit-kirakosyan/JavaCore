@@ -15,7 +15,7 @@ public interface MedicalCenterStorage {
 
     void searchDoctorByProfession(String profession);
 
-    Person getById(String doctorId) throws MedicalNotFoundException;
+    Person getById(String id) throws MedicalNotFoundException;
     Doctor getDoctorById(String doctorId);
 
     Person getDoctorByEmail(String email);

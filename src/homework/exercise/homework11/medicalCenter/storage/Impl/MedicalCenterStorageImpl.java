@@ -71,13 +71,13 @@ public class MedicalCenterStorageImpl implements MedicalCenterStorage {
     }
 
     @Override
-    public Person getById(String doctorId) throws MedicalNotFoundException {
+    public Person getById(String id) throws MedicalNotFoundException {
         for (int i = 0; i < size; i++) {
-            if (persons[i].getId().equalsIgnoreCase(doctorId)) {
+            if (persons[i].getId().equalsIgnoreCase(id)) {
                 return persons[i];
             }
         }
-        throw new MedicalNotFoundException("Doctor with " + doctorId + " already exists!!!");
+        throw new MedicalNotFoundException("Doctor with " + id + " already exists!!!");
     }
 
     @Override
