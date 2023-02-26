@@ -1,6 +1,7 @@
 package homework.exercise.homework11;
 
 import homework.exercise.homework11.medicalCenter.Commands;
+import homework.exercise.homework11.medicalCenter.exception.MedicalNotFoundException;
 import homework.exercise.homework11.medicalCenter.model.Doctor;
 import homework.exercise.homework11.medicalCenter.model.Patient;
 import homework.exercise.homework11.medicalCenter.model.Person;
@@ -127,31 +128,27 @@ public class MedicalCenterDemo implements Commands {
             System.out.println("Please input Doctor Id");
             String parsonId = scanner.nextLine();
             Person parsonById = medicalCenterStorage.getById(parsonId);
-            if (parsonById != null) {
-                System.out.print("Please input new Doctor's name, surname, email, phone, profession( ");
-                for (Profession value : Profession.values()) {
-                    System.out.print(value + ", ");
-                }
-
-                System.out.println(")");
-                String dataStr = scanner.nextLine();
-                String[] dataArrStr = dataStr.split(",");
-                String email = dataArrStr[2];
-                Doctor doctor = (Doctor) parsonById;
-                Person doctorByEmail = medicalCenterStorage.getDoctorByEmail(email);
-                if (doctorByEmail == null) {
-                    doctor.setName(dataArrStr[0]);
-                    doctor.setSurname(dataArrStr[1]);
-                    doctor.setEmail(dataArrStr[2]);
-                    doctor.setPhoneNumber(dataArrStr[3]);
-                    doctor.setProfession(Profession.valueOf(dataArrStr[4].toUpperCase(Locale.ROOT)));
-                } else {
-                    System.out.println("Doctor with " + email + " already exists!!");
-                }
-            } else {
-                System.out.println("Doctor with " + parsonId + " already exists!!");
+            System.out.print("Please input new Doctor's name, surname, email, phone, profession( ");
+            for (Profession value : Profession.values()) {
+                System.out.print(value + ", ");
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+
+            System.out.println(")");
+            String dataStr = scanner.nextLine();
+            String[] dataArrStr = dataStr.split(",");
+            String email = dataArrStr[2];
+            Doctor doctor = (Doctor) parsonById;
+            Person doctorByEmail = medicalCenterStorage.getDoctorByEmail(email);
+            if (doctorByEmail == null) {
+                doctor.setName(dataArrStr[0]);
+                doctor.setSurname(dataArrStr[1]);
+                doctor.setEmail(dataArrStr[2]);
+                doctor.setPhoneNumber(dataArrStr[3]);
+                doctor.setProfession(Profession.valueOf(dataArrStr[4].toUpperCase(Locale.ROOT)));
+            } else {
+                System.out.println("Doctor with " + email + " already exists!!");
+            }
+        } catch (ArrayIndexOutOfBoundsException | MedicalNotFoundException e) {
             System.err.println(e.getMessage());
             changeDoctorDataById();
         } catch (IllegalArgumentException e) {
@@ -182,21 +179,15 @@ public class MedicalCenterDemo implements Commands {
             System.out.println(")");
             String dataStr = scanner.nextLine();
             String[] dataArrStr = dataStr.split(",");
-            String doctorId = dataArrStr[0];
-            Person doctorById = medicalCenterStorage.getById(doctorId);
-            if (doctorById == null) {
-                String email = dataArrStr[4];
-                Person doctorByEmail = medicalCenterStorage.getDoctorByEmail(email);
-
-                if (doctorByEmail == null) {
-                    Doctor doctor = new Doctor(doctorId, dataArrStr[1], dataArrStr[2],
-                            dataArrStr[3], email, Profession.valueOf(dataArrStr[5].toUpperCase(Locale.ROOT)));
-                    medicalCenterStorage.add(doctor);
-                } else {
-                    System.err.println("Doctor with " + email + " already exists!!!");
-                }
+            String doctorById = dataArrStr[0];
+            Person byId = medicalCenterStorage.getDoctorById(doctorById);
+            if (byId == null) {
+                medicalCenterStorage.getDoctorByEmail(dataArrStr[4]);
+                Doctor doctor = new Doctor(dataArrStr[0], dataArrStr[1], dataArrStr[2],
+                        dataArrStr[3], dataArrStr[4], Profession.valueOf(dataArrStr[5].toUpperCase(Locale.ROOT)));
+                medicalCenterStorage.add(doctor);
             } else {
-                System.err.println("Doctor with " + doctorId + " already exists!!!");
+                System.out.println("Doctor with " + doctorById + " already exists!!!");
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.err.println(e.getMessage());

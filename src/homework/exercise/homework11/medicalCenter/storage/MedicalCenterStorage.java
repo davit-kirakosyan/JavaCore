@@ -1,5 +1,7 @@
 package homework.exercise.homework11.medicalCenter.storage;
 
+import homework.exercise.homework11.medicalCenter.exception.MedicalNotFoundException;
+import homework.exercise.homework11.medicalCenter.model.Doctor;
 import homework.exercise.homework11.medicalCenter.model.Person;
 
 import java.util.Date;
@@ -13,7 +15,8 @@ public interface MedicalCenterStorage {
 
     void searchDoctorByProfession(String profession);
 
-    Person getById(String doctorId);
+    Person getById(String doctorId) throws MedicalNotFoundException;
+    Doctor getDoctorById(String doctorId);
 
     Person getDoctorByEmail(String email);
 

@@ -1,6 +1,6 @@
 package homework.exercise.homework11.medicalCenter.exception;
 
-public class MedicalNotFoundException extends Exception{
+public class MedicalNotFoundException extends RuntimeException{
 
     public MedicalNotFoundException() {
     }

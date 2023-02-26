@@ -1,5 +1,6 @@
 package homework.exercise.homework11.medicalCenter.storage.Impl;
 
+import homework.exercise.homework11.medicalCenter.exception.MedicalNotFoundException;
 import homework.exercise.homework11.medicalCenter.model.Doctor;
 import homework.exercise.homework11.medicalCenter.model.Patient;
 import homework.exercise.homework11.medicalCenter.model.Person;
@@ -70,17 +71,30 @@ public class MedicalCenterStorageImpl implements MedicalCenterStorage {
     }
 
     @Override
-    public Person getById(String doctorId) {
+    public Person getById(String doctorId) throws MedicalNotFoundException {
         for (int i = 0; i < size; i++) {
             if (persons[i].getId().equalsIgnoreCase(doctorId)) {
                 return persons[i];
+            }
+        }
+        throw new MedicalNotFoundException("Doctor with " + doctorId + " already exists!!!");
+    }
+
+    @Override
+    public Doctor getDoctorById(String doctorId) {
+        for (int i = 0; i < size; i++) {
+            if (persons[i] instanceof Doctor) {
+                Doctor doctor = (Doctor) persons[i];
+                if (doctor.getId().equalsIgnoreCase(doctorId)) {
+                    return doctor;
+                }
             }
         }
         return null;
     }
 
     @Override
-    public Person getDoctorByEmail(String email) {
+    public Person getDoctorByEmail(String email){
         for (int i = 0; i < size; i++) {
             if (persons[i] instanceof Doctor &&
                     ((Doctor) persons[i]).getEmail().equalsIgnoreCase(email)) {
