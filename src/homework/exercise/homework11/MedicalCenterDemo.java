@@ -122,6 +122,7 @@ public class MedicalCenterDemo implements Commands {
 
     private static void changeDoctorDataById() {
         medicalCenterStorage.print();
+
         try {
             System.out.println("Please input Doctor Id");
             String parsonId = scanner.nextLine();
@@ -131,6 +132,7 @@ public class MedicalCenterDemo implements Commands {
                 for (Profession value : Profession.values()) {
                     System.out.print(value + ", ");
                 }
+
                 System.out.println(")");
                 String dataStr = scanner.nextLine();
                 String[] dataArrStr = dataStr.split(",");
@@ -142,7 +144,7 @@ public class MedicalCenterDemo implements Commands {
                     doctor.setSurname(dataArrStr[1]);
                     doctor.setEmail(dataArrStr[2]);
                     doctor.setPhoneNumber(dataArrStr[3]);
-                    doctor.setProfession(Profession.valueOf(dataArrStr[4].toUpperCase()));
+                    doctor.setProfession(Profession.valueOf(dataArrStr[4].toUpperCase(Locale.ROOT)));
                 } else {
                     System.out.println("Doctor with " + email + " already exists!!");
                 }
@@ -151,6 +153,9 @@ public class MedicalCenterDemo implements Commands {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.err.println(e.getMessage());
+            changeDoctorDataById();
+        } catch (IllegalArgumentException e) {
+            System.err.println("You entered incorrectly ");
             changeDoctorDataById();
         }
 
@@ -182,6 +187,7 @@ public class MedicalCenterDemo implements Commands {
             if (doctorById == null) {
                 String email = dataArrStr[4];
                 Person doctorByEmail = medicalCenterStorage.getDoctorByEmail(email);
+
                 if (doctorByEmail == null) {
                     Doctor doctor = new Doctor(doctorId, dataArrStr[1], dataArrStr[2],
                             dataArrStr[3], email, Profession.valueOf(dataArrStr[5].toUpperCase(Locale.ROOT)));
@@ -194,6 +200,9 @@ public class MedicalCenterDemo implements Commands {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.err.println(e.getMessage());
+            addDoctor();
+        } catch (IllegalArgumentException e) {
+            System.err.println("You entered incorrectly ");
             addDoctor();
         }
 
