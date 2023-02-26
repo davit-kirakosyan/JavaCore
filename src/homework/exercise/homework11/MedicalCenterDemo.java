@@ -180,12 +180,17 @@ public class MedicalCenterDemo implements Commands {
             String dataStr = scanner.nextLine();
             String[] dataArrStr = dataStr.split(",");
             String doctorById = dataArrStr[0];
+            String email = dataArrStr[4];
             Person byId = medicalCenterStorage.getDoctorById(doctorById);
             if (byId == null) {
-                medicalCenterStorage.getDoctorByEmail(dataArrStr[4]);
-                Doctor doctor = new Doctor(dataArrStr[0], dataArrStr[1], dataArrStr[2],
-                        dataArrStr[3], dataArrStr[4], Profession.valueOf(dataArrStr[5].toUpperCase(Locale.ROOT)));
-                medicalCenterStorage.add(doctor);
+                Person doctorByEmail = medicalCenterStorage.getDoctorByEmail(email);
+                if (doctorByEmail == null) {
+                    Doctor doctor = new Doctor(dataArrStr[0], dataArrStr[1], dataArrStr[2],
+                            dataArrStr[3], email, Profession.valueOf(dataArrStr[5].toUpperCase(Locale.ROOT)));
+                    medicalCenterStorage.add(doctor);
+                }else {
+                    System.out.println("Doctor with " + email + " already exists!!!");
+                }
             } else {
                 System.out.println("Doctor with " + doctorById + " already exists!!!");
             }
