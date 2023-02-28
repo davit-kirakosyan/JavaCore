@@ -1,22 +1,22 @@
-package homework.exercise.homework11.medicalCenter.model;
+package homework.homework11.medicalCenter.model;
 
 import java.util.Objects;
 
-public abstract class Person {
+public class Person {
 
     private String id;
     private String name;
     private String surname;
-    private String phoneNumber;
+    private String phone;
 
     public Person() {
     }
 
-    public Person(String id, String name, String surname, String phoneNumber) {
+    public Person(String id, String name, String surname, String phone) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.phoneNumber = phoneNumber;
+        this.phone = phone;
     }
 
     public String getId() {
@@ -43,41 +43,34 @@ public abstract class Person {
         this.surname = surname;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Person person = (Person) o;
-
-        if (!Objects.equals(id, person.id)) return false;
-        if (!Objects.equals(name, person.name)) return false;
-        if (!Objects.equals(surname, person.surname)) return false;
-        return Objects.equals(phoneNumber, person.phoneNumber);
+        return Objects.equals(id, person.id) && Objects.equals(name, person.name) && Objects.equals(surname, person.surname) && Objects.equals(phone, person.phone);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, surname, phone);
     }
 
     @Override
     public String toString() {
-        return "id='" + id + '\'' +
+        return "Person{" +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", phoneNumber='" + phoneNumber + ", ";
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

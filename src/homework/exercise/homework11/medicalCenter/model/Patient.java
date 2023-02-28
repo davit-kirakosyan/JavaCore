@@ -1,6 +1,6 @@
-package homework.exercise.homework11.medicalCenter.model;
+package homework.homework11.medicalCenter.model;
 
-import homework.exercise.homework11.medicalCenter.util.DateUtil;
+import homework.homework11.medicalCenter.util.DateUtil;
 
 import java.util.Date;
 import java.util.Objects;
@@ -8,15 +8,20 @@ import java.util.Objects;
 public class Patient extends Person {
 
     private Doctor doctor;
-    private Date registerDate;
+    private Date registerDateTime;
 
     public Patient() {
     }
 
-    public Patient(String id, String name, String surname, String phoneNumber, Doctor doctor, Date registerDate) {
-        super(id, name, surname, phoneNumber);
+    public Patient(Doctor doctor, Date registerDateTime) {
         this.doctor = doctor;
-        this.registerDate = registerDate;
+        this.registerDateTime = registerDateTime;
+    }
+
+    public Patient(String id, String name, String surname, String phone, Doctor doctor, Date registerDateTime) {
+        super(id, name, surname, phone);
+        this.doctor = doctor;
+        this.registerDateTime = registerDateTime;
     }
 
     public Doctor getDoctor() {
@@ -27,12 +32,12 @@ public class Patient extends Person {
         this.doctor = doctor;
     }
 
-    public Date getRegisterDate() {
-        return registerDate;
+    public Date getRegisterDateTime() {
+        return registerDateTime;
     }
 
-    public void setRegisterDate(Date registerDate) {
-        this.registerDate = registerDate;
+    public void setRegisterDateTime(Date registerDateTime) {
+        this.registerDateTime = registerDateTime;
     }
 
     @Override
@@ -40,26 +45,20 @@ public class Patient extends Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-
         Patient patient = (Patient) o;
-
-        if (!Objects.equals(doctor, patient.doctor)) return false;
-        return Objects.equals(registerDate, patient.registerDate);
+        return Objects.equals(doctor, patient.doctor) && Objects.equals(registerDateTime, patient.registerDateTime);
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (doctor != null ? doctor.hashCode() : 0);
-        result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
-        return result;
+        return Objects.hash(super.hashCode(), doctor, registerDateTime);
     }
 
     @Override
     public String toString() {
-        return "Patient{" +  super.toString() +
+        return "Patient{" +
                 "doctor=" + doctor +
-                ", register=" + DateUtil.toDateString(registerDate) +
-                '}';
+                ", registerDateTime=" + DateUtil.toDateString(registerDateTime) +
+                '}' + super.toString();
     }
 }
