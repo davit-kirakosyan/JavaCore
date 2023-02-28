@@ -1,20 +1,22 @@
-package homework.homework11.medicalCenter.storage.impl;
+package homework.exercise.homework11.medicalCenter.storage.impl;
 
-import homework.homework11.medicalCenter.model.Doctor;
-import homework.homework11.medicalCenter.model.Patient;
-import homework.homework11.medicalCenter.model.Person;
-import homework.homework11.medicalCenter.util.DateUtil;
+import homework.exercise.homework11.medicalCenter.model.Doctor;
+import homework.exercise.homework11.medicalCenter.model.Patient;
+import homework.exercise.homework11.medicalCenter.model.Person;
+import homework.exercise.homework11.medicalCenter.storage.PersonStorage;
+import homework.exercise.homework11.medicalCenter.util.DateUtil;
 
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
 
-public class PersonStorageImpl {
+public class PersonStorageImpl implements PersonStorage {
 
     private Person[] people = new Person[10];
 
     private int size;
 
+    @Override
     public void add(Person person) {
         if (people.length == size) {
             extend();
@@ -22,6 +24,7 @@ public class PersonStorageImpl {
         people[size++] = person;
     }
 
+    @Override
     public void searchDoctorByProfession(String profession) {
         for (int i = 0; i < size; i++) {
             if (people[i] instanceof Doctor) {
@@ -30,11 +33,12 @@ public class PersonStorageImpl {
                     System.out.println(doctor);
                 }
             }else {
-                System.out.println("");
+                System.err.println("there is no such professor");
             }
         }
     }
 
+    @Override
     public void deleteDoctorById(String id) {
         for (int i = 0; i < size; i++) {
             if (people[i] instanceof Doctor) {
@@ -47,6 +51,7 @@ public class PersonStorageImpl {
         }
     }
 
+    @Override
     public Doctor getDoctorById(String doctorId) {
         for (int i = 0; i < size; i++) {
             if (people[i] instanceof Doctor) {
@@ -59,6 +64,7 @@ public class PersonStorageImpl {
         return null;
     }
 
+    @Override
     public Patient getPatientById(String patientId) {
         for (int i = 0; i < size; i++) {
             if (people[i] instanceof Patient) {
@@ -71,6 +77,7 @@ public class PersonStorageImpl {
         return null;
     }
 
+    @Override
     public Patient getPatientDateTime(String dateTime) throws ParseException {
         for (int i = 0; i < size; i++) {
             if (people[i] instanceof Patient) {
@@ -84,6 +91,7 @@ public class PersonStorageImpl {
         return null;
     }
 
+    @Override
     public void printAllPatientsByDoctor(String name) {
         for (int i = 0; i < size; i++) {
             if (people[i] instanceof Patient) {
@@ -95,6 +103,7 @@ public class PersonStorageImpl {
         }
     }
 
+    @Override
     public void printToDaysPatients() {
         Date toDay = new Date();
         for (int i = 0; i < size; i++) {
@@ -107,6 +116,7 @@ public class PersonStorageImpl {
         }
     }
 
+    @Override
     public void printAllDoctor() {
         for (int i = 0; i < size; i++) {
             if (people[i] instanceof Doctor) {

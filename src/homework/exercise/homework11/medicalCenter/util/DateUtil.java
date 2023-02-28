@@ -1,4 +1,4 @@
-package homework.homework11.medicalCenter.util;
+package homework.exercise.homework11.medicalCenter.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

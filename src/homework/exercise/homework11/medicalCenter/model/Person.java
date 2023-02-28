@@ -1,4 +1,4 @@
-package homework.homework11.medicalCenter.model;
+package homework.exercise.homework11.medicalCenter.model;
 
 import java.util.Objects;
 

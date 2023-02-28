@@ -1,4 +1,4 @@
-package homework.homework11.medicalCenter;
+package homework.exercise.homework11.medicalCenter;
 
 public interface MedicalCenterCommands {
 

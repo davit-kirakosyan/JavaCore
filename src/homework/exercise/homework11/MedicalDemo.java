@@ -1,11 +1,12 @@
-package homework.homework11;
+package homework.exercise.homework11;
 
-import homework.homework11.medicalCenter.MedicalCenterCommands;
-import homework.homework11.medicalCenter.model.Doctor;
-import homework.homework11.medicalCenter.model.Patient;
-import homework.homework11.medicalCenter.model.type.ProfessionType;
-import homework.homework11.medicalCenter.storage.impl.PersonStorageImpl;
-import homework.homework11.medicalCenter.util.DateUtil;
+import homework.exercise.homework11.medicalCenter.MedicalCenterCommands;
+import homework.exercise.homework11.medicalCenter.model.Doctor;
+import homework.exercise.homework11.medicalCenter.model.Patient;
+import homework.exercise.homework11.medicalCenter.model.type.ProfessionType;
+import homework.exercise.homework11.medicalCenter.storage.PersonStorage;
+import homework.exercise.homework11.medicalCenter.storage.impl.PersonStorageImpl;
+import homework.exercise.homework11.medicalCenter.util.DateUtil;
 
 import java.text.ParseException;
 import java.util.Locale;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 
 public class MedicalDemo implements MedicalCenterCommands {
 
-    private static PersonStorageImpl personStorage = new PersonStorageImpl();
+    private static PersonStorage personStorage = new PersonStorageImpl();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {

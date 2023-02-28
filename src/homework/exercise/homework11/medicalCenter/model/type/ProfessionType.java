@@ -1,4 +1,4 @@
-package homework.homework11.medicalCenter.model.type;
+package homework.exercise.homework11.medicalCenter.model.type;
 
 public enum ProfessionType {
 
