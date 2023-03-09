@@ -7,7 +7,8 @@ public class Gen<T> {
         ob = o;
     }
 
-    public T getOb() {
+     T getOb() {
+        System.out.print("Meтoд getob() из класса Gen: ");
         return ob;
     }
 
