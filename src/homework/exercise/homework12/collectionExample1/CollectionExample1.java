@@ -33,7 +33,7 @@ public class CollectionExample1 implements Commands1 {
                         System.out.println("name");
                         String name1 = scanner.nextLine();
                         storage.indexByValue(index, name1);
-                    }catch (NumberFormatException e){
+                    }catch (NumberFormatException | IndexOutOfBoundsException e){
                         System.err.println(e.getMessage());
                     }
                 break;
