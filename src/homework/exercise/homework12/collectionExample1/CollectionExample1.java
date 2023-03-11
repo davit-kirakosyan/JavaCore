@@ -19,7 +19,7 @@ public class CollectionExample1 implements Commands1 {
                 case IS_NAME:
                     System.out.println("Name");
                     String search = scanner.nextLine();
-                    storage.search(search);
+                    storage.isName(search);
                 break;
                 case DELETE_BY_VALUE:
                     System.out.println("Name");

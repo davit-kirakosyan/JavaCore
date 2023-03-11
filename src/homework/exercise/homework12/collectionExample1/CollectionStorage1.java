@@ -8,11 +8,11 @@ public class CollectionStorage1 {
     private  List<String> list = new ArrayList<>(
             List.of("poxos", "petros", "martiros", "zmruxt", "valod", "mamikon"));
 
-    public  void search(String name) {
+    public  boolean isName(String name) {
         if (list.contains(name)) {
-            System.out.println("there is a cheeky name");
+            return true;
         } else {
-            System.out.println("there isn't cheeky name");
+            return false;
         }
     }
 
