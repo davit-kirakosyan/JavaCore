@@ -12,7 +12,7 @@ public class ShowFile2 {
         FileInputStream fin =null;
 
         if (args.length != 1){
-            System.out.println("Использование: ShowFile Poxos.txt");
+            System.out.println("Использование: ShowFile test.txt");
             return;
         }
 
@@ -21,7 +21,7 @@ public class ShowFile2 {
             do {
                 i = fin.read();
                 if (i != -1){
-                    System.out.println((char) i);
+                    System.out.print((char) i);
                 }
             }while (i != -1);
         }catch (FileNotFoundException e){

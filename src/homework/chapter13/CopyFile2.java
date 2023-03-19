@@ -10,7 +10,7 @@ public class CopyFile2 {
 
         int i;
         if (args.length != 2){
-            System.out.println("Использование: CopyFile откуда куда");
+            System.out.println("Использование: CopyFile first.txt,second.txt");
             return;
         }
 

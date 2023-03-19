@@ -9,16 +9,16 @@ public class ShowFile {
     public static void main(String[] args) {
 
         int i;
-        FileInputStream fin =null;
+        FileInputStream fin = null;
 
-        if (args.length != 1){
-            System.out.println("Использование: ShowFile имя_файла");
+        if (args.length != 1) {
+            System.out.println("Использование: ShowFile test.txt");
             return;
         }
 
         try {
             fin = new FileInputStream(args[0]);
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Heвoзмoжнo открыть файл");
             return;
         }
@@ -26,17 +26,17 @@ public class ShowFile {
         try {
             do {
                 i = fin.read();
-                if (i != -1){
-                    System.out.println((char) i);
+                if (i != -1) {
+                    System.out.print((char) i);
                 }
-            }while (i != -1);
-        }catch (IOException e){
+            } while (i != -1);
+        } catch (IOException e) {
             System.out.println("Oшибкa чтения из файла");
         }
 
         try {
             fin.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Oшибкa чтения из файла");
         }
     }

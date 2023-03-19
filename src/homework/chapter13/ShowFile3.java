@@ -11,7 +11,7 @@ public class ShowFile3 {
         int i;
 
         if (args.length != 1) {
-            System.out.println("Использование: ShowFile имя_файла");
+            System.out.println("Использование: ShowFile test.txt");
             return;
         }
 
@@ -19,7 +19,7 @@ public class ShowFile3 {
             do {
                 i = fin.read();
                 if (i != -1) {
-                    System.out.println((char) i);
+                    System.out.print((char) i);
                 }
             } while (i != -1);
         } catch (FileNotFoundException e) {
