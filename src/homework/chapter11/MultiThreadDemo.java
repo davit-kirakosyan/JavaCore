@@ -1,16 +1,15 @@
 package homework.chapter11;
 
-public class ThreadDemo {
+public class MultiThreadDemo {
 
     public static void main(String[] args) {
 
-        new NewThread();
+        new NewThread3("Oдин");
+        new NewThread3("Два");
+        new NewThread3("Три");
 
         try {
-            for (int i = 5; i > 0; i--) {
-                System.out.println("Глaвный поток: " + i);
-                Thread.sleep(1000);
-            }
+                Thread.sleep(10000);
         }catch (InterruptedException e){
             System.err.println("Глaвный поток прерван.");
         }

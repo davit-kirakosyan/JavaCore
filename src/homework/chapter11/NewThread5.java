@@ -1,26 +1,43 @@
 package homework.chapter11;
 
-public class NewThread implements Runnable {
+public class NewThread5 implements Runnable {
 
+    String name;
     Thread t;
+    boolean suspendFlag;
 
-    NewThread() {
-        t = new Thread(this, "Демонстрационный поток");
-
-        System.out.println("Дoчepний поток создан: " + t);
+    NewThread5(String threadName) {
+        name = threadName;
+        t = new Thread(this, name);
+        System.out.println("Hoвый поток: " + t);
+        suspendFlag = false;
         t.start();
     }
 
     @Override
     public void run() {
         try {
-            for (int i = 5; i >  0; i--) {
-                System.out.println("Дoчepний поток: " + i);
-                Thread.sleep(1000);
+            for (int i = 15; i > 0; i--) {
+                System.out.println(name + ": " + i);
+                Thread.sleep(200);
+                synchronized (this) {
+                    while (suspendFlag) {
+                        wait();
+                    }
+                }
             }
-        }catch (InterruptedException e){
-            System.err.println("Дoчepний поток прерван.");
+        } catch (InterruptedException e) {
+            System.err.println(name + " прерван.");
         }
-        System.out.println("Дoчepний поток завершен.");
+        System.out.println(name + " завершен.");
+    }
+
+    synchronized void mySuspend(){
+        suspendFlag =true;
+    }
+
+    synchronized void myResume(){
+        suspendFlag = false;
+        notify();
     }
 }

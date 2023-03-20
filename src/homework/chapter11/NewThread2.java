@@ -1,14 +1,11 @@
 package homework.chapter11;
 
-public class NewThread implements Runnable {
+public class NewThread2 extends Thread {
 
-    Thread t;
-
-    NewThread() {
-        t = new Thread(this, "Демонстрационный поток");
-
-        System.out.println("Дoчepний поток создан: " + t);
-        t.start();
+    NewThread2() {
+        super("Демонстрационный поток");
+        System.out.println("Дoчepний поток: " + this);
+        start();
     }
 
     @Override
@@ -16,7 +13,7 @@ public class NewThread implements Runnable {
         try {
             for (int i = 5; i >  0; i--) {
                 System.out.println("Дoчepний поток: " + i);
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }
         }catch (InterruptedException e){
             System.err.println("Дoчepний поток прерван.");

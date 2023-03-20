@@ -1,10 +1,10 @@
 package homework.chapter11;
 
-public class ThreadDemo {
+public class ExtendThead {
 
     public static void main(String[] args) {
 
-        new NewThread();
+        new NewThread2();
 
         try {
             for (int i = 5; i > 0; i--) {

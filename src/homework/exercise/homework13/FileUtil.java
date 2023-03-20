@@ -106,7 +106,7 @@ public class FileUtil {
         String pathName = scanner.nextLine();
         File file = new File(pathName);
 
-        if (!file.exists() || file.isDirectory()) {
+        if (file.isDirectory()) {
             int sum = 0;
             for (File listFile : file.listFiles()) {
                 sum += listFile.length();
@@ -129,17 +129,17 @@ public class FileUtil {
         String fileName = scanner.nextLine();
         System.out.println("Please input content");
         String content = scanner.nextLine();
-        File file = new File(path,fileName);
-            try {
-                if (file.createNewFile()){
-                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-                    bufferedWriter.write(content);
-                    bufferedWriter.close();
-                }
-            } catch (IOException e) {
-                System.err.println(e.getMessage());
+        File file = new File(path, fileName);
+        try {
+            if (file.createNewFile()) {
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+                bufferedWriter.write(content);
+                bufferedWriter.close();
             }
-
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
+
     }
+}
 

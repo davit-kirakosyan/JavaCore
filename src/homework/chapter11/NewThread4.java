@@ -1,10 +1,10 @@
 package homework.chapter11;
 
-public class NewThread3 implements Runnable {
+public class NewThread4 implements Runnable {
     String name;
     Thread t;
 
-    NewThread3(String threadName) {
+    NewThread4(String threadName) {
         name = threadName;
         t = new Thread(this, name);
         System.out.println("Hoвый поток: " + t);
@@ -15,7 +15,7 @@ public class NewThread3 implements Runnable {
     public void run() {
         try {
             for (int i = 5; i > 0; i--) {
-                System.out.println("Дoчepний поток: " + i);
+                System.out.println(name + ": " + i);
                 Thread.sleep(1000);
             }
         } catch (InterruptedException e) {
